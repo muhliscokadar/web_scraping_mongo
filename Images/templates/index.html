@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="google" content="notranslate">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/bootstrap-table.min.css">
+</head>
+
+<body>
+  <div class="container-fluid bg-secondary">
+    <div class="jumbotron text-center" style="background-color: rgb(202, 110, 68);">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <div class="row container-fluid my-4 mx-1">
+      <div class="card col-lg">
+        <!-- Latest Mars News card-->
+        <div class="card-body">
+          <h3 class="card-title text-center">{{ marskeys[0] }}</h3>
+          <hr>
+          <h4 class="card-text">{{ marsdata[marskeys[0]]["title"] }}</h4>
+          <p class="card-text">{{ marsdata[marskeys[0]]["para"] }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row container-fluid my-4 mx-1">
+      <div class="col-lg-8">
+        <!-- Featured Mars Image card -->
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title text-center">{{ marskeys[1] }}</h3>
+            <hr>
+            <img class="img-fluid mx-auto d-block" src="{{ marsdata[marskeys[1]] }}" alt="mars">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="row">
+          <!-- Current Weather on Mars card -->
+          <div class="card col-lg my-2">
+            <div class="card-body">
+              <h3 class="card-title text-center">{{ marskeys[2] }}</h3>
+              <hr>
+              <p class="card-text">{{ marsdata[marskeys[2]] }}</p>
+            </div>
+          </div>
+          <div class="w-100"></div>
+          <div class="card col-lg my-2">
+            <!-- Mars Facts card -->
+            <div class="card-body">
+              <h3 class="card-title text-center">{{ marskeys[3] }}</h3>
+              <hr>
+              <!-- Embed the table -->
+              {{ marsdata[marskeys[3]] | safe}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row container-fluid my-4 mx-1">
+      <div class="card col-lg">
+        <!-- Mars Hemispheres card-->
+        <div class="card-body">
+          <h3 class="card-title text-center">{{ marskeys[4] }}</h3>
+          <hr>
+          <div class="row">
+            {% for hemi in marsdata[marskeys[4]] %}
+            <div class="col-lg">
+              <img class="img-fluid mx-auto d-block" src="{{ hemi["url"] }}" alt="{{ hemi["title"] }}">
+              <h6 class="text-center font-weight-bold my-3">{{ hemi["title"] }}</h6>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer font-small bg-dark text-white pt-4">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+      <a href="https://techbootcamps.utexas.edu/data/" class="text-danger"> UT Austin Data Science Bootcamp</a>
+    </div>
+  </footer>
+
+  <!-- <script> document.getElementById("marstable").innerHTML=marsdata[marskeys[3]]; </script> -->
+  <!-- JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS, and then Bootstrap Table JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.2/core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/bootstrap-table.min.js"></script>
+
+</body>
+
+</html>
